@@ -1,0 +1,22 @@
+{
+  "name": "sebak-test",
+  "version": "0.1.0",
+  "description": "e2e tests for sebak",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bosnet/sebak-test.git"
+  },
+  "author": "BlockchainOS",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/bosnet/sebak-test/issues"
+  },
+  "homepage": "https://github.com/bosnet/sebak-test#readme"
+}
