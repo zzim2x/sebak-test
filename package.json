@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "NODE_TLS_REJECT_UNAUTHORIZED=0 mocha --recursive \"./spec/*.spec.js\""
+    "test": "NODE_TLS_REJECT_UNAUTHORIZED=0 mocha --recursive \"./spec/*.spec.js\"",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,10 @@
   },
   "homepage": "https://github.com/bosnet/sebak-test#readme",
   "devDependencies": {
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-mocha": "^5.2.0",
     "got": "^9.0.0",
     "mocha": "^5.2.0",
     "unexpected": "^10.38.0"
