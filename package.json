@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "NODE_TLS_REJECT_UNAUTHORIZED=0 mocha --recursive \"./spec/*.spec.js\"",
+    "test": "NODE_TLS_REJECT_UNAUTHORIZED=0 mocha --require ./load-config.js --recursive \"./spec/*.spec.js\"",
     "lint": "eslint ."
   },
   "repository": {

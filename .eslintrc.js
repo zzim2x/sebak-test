@@ -3,6 +3,9 @@ module.exports = {
   env: {
     mocha: true,
   },
+  globals: {
+    config: true,
+  },
   plugins: [
     'mocha',
   ],

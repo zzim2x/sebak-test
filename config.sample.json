@@ -1,0 +1,16 @@
+{
+  "nodes": [
+    {
+      "name": "node 1",
+      "endpoint": "https://localhost:12345"
+    },
+    {
+      "name": "node 2",
+      "endpoint": "https://localhost:12346"
+    },
+    {
+      "name": "node 2",
+      "endpoint": "https://localhost:12347"
+    }
+  ]
+}

@@ -1,7 +1,3 @@
-const { getJson, postJson } = require('./util');
-
-const endpoint = 'https://localhost:12345';
-
 describe('node GET API example', () => {
   it('should compare response body and status code', async () => {
     const expected = {
@@ -24,15 +20,22 @@ describe('node GET API example', () => {
       },
     };
 
-    await getJson(`${endpoint}/node/`, expected, 200);
+    // test every nodes
+    config.nodes.forEach(async (n) => {
+      await n.getJson('/node/', expected, 200);
+    });
   });
 
   it('should check only 200 OK', async () => {
-    await getJson(`${endpoint}/node/`);
+    config.nodes.forEach(async (n) => {
+      await n.getJson('/node/');
+    });
   });
 
   it('should check only status code', async () => {
-    await getJson(`${endpoint}/api/`, 404);
+    config.nodes.forEach(async (n) => {
+      await n.getJson('/api/', 404);
+    });
   });
 });
 
@@ -40,14 +43,20 @@ describe('node POST API example', () => {
   const body = { test: 1 };
 
   it('should compare response body and status code', async () => {
-    await postJson(`${endpoint}/node/message`, body, body, 200);
+    config.nodes.forEach(async (n) => {
+      await n.postJson('/node/message', body, body, 200);
+    });
   });
 
   it('should check only 200 OK', async () => {
-    await postJson(`${endpoint}/node/message`, body);
+    config.nodes.forEach(async (n) => {
+      await n.postJson('/node/message', body);
+    });
   });
 
   it('should check only status code', async () => {
-    await postJson(`${endpoint}/api`, body, 404);
+    config.nodes.forEach(async (n) => {
+      await n.postJson('/api', body, 404);
+    });
   });
 });

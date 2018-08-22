@@ -14,9 +14,15 @@ const isStatusCode = (code) => {
   return false;
 };
 
-module.exports = {
-  getJson: async (targetUrl = required(), expected, statusCode = 200) => {
-    const res = await got.get(targetUrl, gotOptions);
+class Node {
+  constructor(info) {
+    Object.keys(info).forEach((key) => {
+      this[key] = info[key];
+    });
+  }
+
+  async getJson(path = required(), expected, statusCode = 200) {
+    const res = await got.get(`${this.endpoint}${path}`, gotOptions);
 
     if (expected && !isStatusCode(expected)) {
       expect(res.body, 'to satisfy', expected);
@@ -27,9 +33,10 @@ module.exports = {
     } else {
       expect(res.statusCode, 'to be', statusCode);
     }
-  },
-  postJson: async (targetUrl = required(), requestBody, expected, statusCode = 200) => {
-    const res = await got.post(targetUrl, Object.assign(gotOptions, {
+  }
+
+  async postJson(path = required(), requestBody, expected, statusCode = 200) {
+    const res = await got.post(`${this.endpoint}${path}`, Object.assign(gotOptions, {
       body: requestBody,
     }));
 
@@ -42,5 +49,9 @@ module.exports = {
     } else {
       expect(res.statusCode, 'to be', statusCode);
     }
-  },
+  }
+}
+
+module.exports = {
+  Node,
 };
