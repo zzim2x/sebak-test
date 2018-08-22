@@ -21,21 +21,18 @@ describe('node GET API example', () => {
     };
 
     // test every nodes
-    config.nodes.forEach(async (n) => {
-      await n.getJson('/node/', expected, 200);
-    });
+    const promises = config.nodes.map((n) => n.getJson('/node/', expected, 200));
+    await Promise.all(promises);
   });
 
   it('should check only 200 OK', async () => {
-    config.nodes.forEach(async (n) => {
-      await n.getJson('/node/');
-    });
+    const promises = config.nodes.map((n) => n.getJson('/node/'));
+    await Promise.all(promises);
   });
 
   it('should check only status code', async () => {
-    config.nodes.forEach(async (n) => {
-      await n.getJson('/api/', 404);
-    });
+    const promises = config.nodes.map((n) => n.getJson('/api/', 404));
+    await Promise.all(promises);
   });
 });
 
@@ -43,20 +40,17 @@ describe('node POST API example', () => {
   const body = { test: 1 };
 
   it('should compare response body and status code', async () => {
-    config.nodes.forEach(async (n) => {
-      await n.postJson('/node/message', body, body, 200);
-    });
+    const promises = config.nodes.map((n) => n.postJson('/node/message', body, body, 200));
+    await Promise.all(promises);
   });
 
   it('should check only 200 OK', async () => {
-    config.nodes.forEach(async (n) => {
-      await n.postJson('/node/message', body);
-    });
+    const promises = config.nodes.map((n) => n.postJson('/node/message', body));
+    await Promise.all(promises);
   });
 
   it('should check only status code', async () => {
-    config.nodes.forEach(async (n) => {
-      await n.postJson('/api', body, 404);
-    });
+    const promises = config.nodes.map((n) => n.postJson('/api', body, 404));
+    await Promise.all(promises);
   });
 });
